@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://localhost:8380/"
+      "url": "https://api.enarxis.eu/"
     }
   ],
   "paths": {
