@@ -289,7 +289,7 @@
             "in": "query",
             "schema": {
               "maximum": 2147483647,
-              "minimum": 0,
+              "minimum": 1,
               "pattern": "^-?(?:0|[1-9]\\d*)$",
               "type": [
                 "integer",
@@ -360,7 +360,7 @@
         "tags": [
           "Orders"
         ],
-        "description": "Query a single order based on order code. Note that this endpoint returns all registered orders regardless of channel (email, phone, webapi)",
+        "description": "Query a single order using the order id. Note that this endpoint returns all registered orders regardless of channel (email, phone, webapi)",
         "parameters": [
           {
             "name": "orderId",
@@ -426,15 +426,7 @@
           {
             "name": "BusinessUnit",
             "in": "query",
-            "description": "Query products based on Business Unit",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "q",
-            "in": "query",
-            "description": "Query SKUs based on product description",
+            "description": "query products based on Business Unit",
             "schema": {
               "type": "string"
             }
@@ -465,6 +457,27 @@
                 "string"
               ],
               "format": "int32"
+            }
+          },
+          {
+            "name": "MPN",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Barcode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -661,12 +674,29 @@
       },
       "LoginResponse": {
         "required": [
-          "token"
+          "access_token",
+          "issued_token_type",
+          "token_type"
         ],
         "type": "object",
         "properties": {
-          "token": {
+          "access_token": {
             "type": "string"
+          },
+          "issued_token_type": {
+            "type": "string"
+          },
+          "token_type": {
+            "type": "string"
+          },
+          "expires_in": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int32"
           }
         }
       },
